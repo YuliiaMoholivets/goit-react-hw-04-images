@@ -33,37 +33,9 @@ export const App = () => {
       } catch (error) {
         setStatus('ERROR');
       }
-      getImages();
     };
+    getImages();
   }, [pageNumber, searchWord]);
-  // useEffect(() => {
-  //   if (searchWord === '') {
-  //     return;
-  //   } else {
-  //     setStatus('LOADING');
-  //     const newImage = fetchImages(searchWord, pageNumber);
-  //     try {
-  //       newImage.then(data => {
-  //         if (data.total === 0) {
-  //           setStatus('ERROR');
-  //         } else {
-  //           const newData = data.hits.map(
-  //             ({ id, webformatURL, largeImageURL }) => ({
-  //               id,
-  //               webformatURL,
-  //               largeImageURL,
-  //             })
-  //           );
-  //           setImages(prevState => [...prevState, ...images]);
-  //           setPageTotal(data.totalHits);
-  //           setStatus('OK');
-  //         }
-  //       });
-  //     } catch (error) {
-  //       setStatus('ERROR');
-  //     }
-  //   }
-  // }, [pageNumber, searchWord]);
 
   const formSubmitHandler = keyWord => {
     if (searchWord !== keyWord) {
@@ -103,17 +75,4 @@ export const App = () => {
       )}
     </Container>
   );
-  // return (
-  //   <Container>
-  //     <Searchbar onSubmit={formSubmitHandler} />
-  //     {images.length > 0 && <ImageGallery data={images} />}
-  //     {status === 'ERROR' && (
-  //       <ErrorMessage>No images for keyword "{searchWord}"</ErrorMessage>
-  //     )}
-  //     {status === 'LOADING' && <Loader />}
-  //     {status === 'OK' && images.length !== totalImages && (
-  //       <Button text={'Load more'} type="button" onClick={handleIncrement} />
-  //     )}
-  //   </Container>
-  // );
 };
