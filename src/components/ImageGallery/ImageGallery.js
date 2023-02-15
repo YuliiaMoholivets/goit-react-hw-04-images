@@ -1,5 +1,5 @@
 import React from 'react';
-import ImageGalleryItem from '../ImageGalleryItem/ImageGalleryItem';
+import { ImageGalleryItem } from '../ImageGalleryItem/ImageGalleryItem';
 import { ImageGalleryList } from './ImageGallery.styled';
 import PropTypes from 'prop-types';
 
@@ -18,6 +18,7 @@ const ImageGallery = ({ data }) => (
 
 export default ImageGallery;
 
+//
 ImageGallery.propTypes = {
   data: PropTypes.arrayOf(
     PropTypes.shape({

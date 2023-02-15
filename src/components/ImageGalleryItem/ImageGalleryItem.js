@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { useState } from 'react';
 import {
   ImageGalleryEl,
   ImageGalleryItemImage,
@@ -6,40 +6,36 @@ import {
 import { Modal } from '../Modal/Modal';
 import PropTypes from 'prop-types';
 
-export default class ImageGalleryItem extends Component {
-  static propTypes = {
-    id: PropTypes.number.isRequired,
-    src: PropTypes.string.isRequired,
-    largeSrc: PropTypes.string.isRequired,
+export const ImageGalleryItem = ({ id, src, largeSrc }) => {
+  const [showModal, setShowModal] = useState(false);
+
+  const toggleModal = () => {
+    setShowModal(PrevshowModal => {
+      if (PrevshowModal === true) {
+        return false;
+      }
+      if (PrevshowModal === false) {
+        return true;
+      }
+    });
   };
 
-  state = {
-    showModal: false,
-  };
+  return (
+    <>
+      <ImageGalleryEl key={id}>
+        <ImageGalleryItemImage src={src} alt="foto" onClick={toggleModal} />
+      </ImageGalleryEl>
+      {showModal && (
+        <Modal src={largeSrc} onClose={toggleModal}>
+          <img src={largeSrc} alt="foto" />
+        </Modal>
+      )}
+    </>
+  );
+};
 
-  toggleModal = () => {
-    this.setState(({ showModal }) => ({
-      showModal: !showModal,
-    }));
-  };
-
-  render() {
-    const { id, src, largeSrc } = this.props;
-    return (
-      <>
-        <ImageGalleryEl key={id}>
-          <ImageGalleryItemImage
-            src={src}
-            alt="foto"
-            onClick={this.toggleModal}
-          />
-        </ImageGalleryEl>
-        {this.state.showModal && (
-          <Modal src={largeSrc} onClose={this.toggleModal}>
-            <img src={largeSrc} alt="foto" />
-          </Modal>
-        )}
-      </>
-    );
-  }
-}
+ImageGalleryItem.propTypes = {
+  id: PropTypes.number.isRequired,
+  src: PropTypes.string.isRequired,
+  largeSrc: PropTypes.string.isRequired,
+};
