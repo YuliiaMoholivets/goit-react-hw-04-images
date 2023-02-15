@@ -13,7 +13,7 @@ export default class App extends Component {
     totalImages: 0,
     status: '',
   };
-  ///
+
   componentDidUpdate(prevProps, prevState) {
     const { pageNumber, searchWord } = this.state;
     const nextWord = searchWord;
